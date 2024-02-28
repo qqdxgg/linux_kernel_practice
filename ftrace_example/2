@@ -1,0 +1,24 @@
+# tracer: function
+#
+# entries-in-buffer/entries-written: 2/2   #P:4
+#
+#                                _-----=> irqs-off/BH-disabled
+#                               / _----=> need-resched
+#                              | / _---=> hardirq/softirq
+#                              || / _--=> preempt-depth
+#                              ||| / _-=> migrate-disable
+#                              |||| /     delay
+#           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||     |         |
+             cat-4115    [003] .....  1247.602093: test_proc_show <-seq_read_iter
+             cat-4115    [003] .....  1247.602100: <stack trace>
+ => 0xffffffffc0ae50ad
+ => test_proc_show
+ => seq_read_iter
+ => seq_read
+ => proc_reg_read
+ => vfs_read
+ => ksys_read
+ => __x64_sys_read
+ => do_syscall_64
+ => entry_SYSCALL_64_after_hwframe

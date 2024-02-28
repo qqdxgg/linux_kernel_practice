@@ -1,0 +1,276 @@
+# tracer: function_graph
+#
+# CPU  DURATION                  FUNCTION CALLS
+# |     |   |                     |   |   |   |
+ 1)               |  test_proc_show [proc]() {
+ 1)               |    kill_time [proc]() {
+ 1)               |      __const_udelay() {
+ 1)               |        delay_tsc() {
+ 1)   0.767 us    |          irq_enter_rcu();
+ 1)               |          __sysvec_apic_timer_interrupt() {
+ 1)               |            hrtimer_interrupt() {
+ 1)   0.188 us    |              _raw_spin_lock_irqsave();
+ 1)   0.265 us    |              ktime_get_update_offsets_now();
+ 1)               |              __hrtimer_run_queues() {
+ 1)   0.224 us    |                __remove_hrtimer();
+ 1)   0.141 us    |                _raw_spin_unlock_irqrestore();
+ 1)               |                tick_sched_timer() {
+ 1)   0.134 us    |                  ktime_get();
+ 1)   0.131 us    |                  tick_sched_do_timer();
+ 1)               |                  tick_sched_handle() {
+ 1)               |                    update_process_times() {
+ 1)               |                      account_process_tick() {
+ 1)               |                        account_system_time() {
+ 1)               |                          account_system_index_time() {
+ 1)   0.168 us    |                            cpuacct_account_field();
+ 1)               |                            __cgroup_account_cputime_field() {
+ 1)   0.113 us    |                              cgroup_rstat_updated();
+ 1)   0.402 us    |                            }
+ 1)   0.156 us    |                            acct_account_cputime();
+ 1)   1.290 us    |                          }
+ 1)   1.509 us    |                        }
+ 1)   1.734 us    |                      }
+ 1)   0.108 us    |                      hrtimer_run_queues();
+ 1)               |                      raise_softirq() {
+ 1)   0.109 us    |                        __raise_softirq_irqoff();
+ 1)   0.350 us    |                      }
+ 1)               |                      rcu_sched_clock_irq() {
+ 1)   0.125 us    |                        check_cpu_stall();
+ 1)   0.109 us    |                        rcu_segcblist_ready_cbs();
+ 1)               |                        invoke_rcu_core() {
+ 1)               |                          raise_softirq() {
+ 1)   0.110 us    |                            __raise_softirq_irqoff();
+ 1)   0.319 us    |                          }
+ 1)   0.570 us    |                        }
+ 1)   1.313 us    |                      }
+ 1)               |                      scheduler_tick() {
+ 1)   0.112 us    |                        arch_scale_freq_tick();
+ 1)               |                        raw_spin_rq_lock_nested() {
+ 1)   0.117 us    |                          _raw_spin_lock();
+ 1)   0.391 us    |                        }
+ 1)   0.179 us    |                        update_rq_clock();
+ 1)               |                        task_tick_fair() {
+ 1)               |                          update_curr() {
+ 1)   0.114 us    |                            update_min_vruntime();
+ 1)   0.135 us    |                            cpuacct_charge();
+ 1)               |                            __cgroup_account_cputime() {
+ 1)   0.113 us    |                              cgroup_rstat_updated();
+ 1)   0.321 us    |                            }
+ 1)   1.067 us    |                          }
+ 1)   0.165 us    |                          __update_load_avg_se();
+ 1)   0.160 us    |                          __update_load_avg_cfs_rq();
+ 1)   0.113 us    |                          update_cfs_group();
+ 1)   0.161 us    |                          hrtimer_active();
+ 1)               |                          update_curr() {
+ 1)   0.110 us    |                            update_min_vruntime();
+ 1)   0.332 us    |                          }
+ 1)   0.165 us    |                          __update_load_avg_se();
+ 1)   0.151 us    |                          __update_load_avg_cfs_rq();
+ 1)               |                          update_cfs_group() {
+ 1)               |                            reweight_entity() {
+ 1)   0.123 us    |                              update_curr();
+ 1)   0.360 us    |                            }
+ 1)   0.655 us    |                          }
+ 1)   0.110 us    |                          hrtimer_active();
+ 1)   4.365 us    |                        }
+ 1)   0.124 us    |                        calc_global_load_tick();
+ 1)               |                        task_tick_mm_cid() {
+ 1)               |                          task_work_add() {
+ 1)   0.110 us    |                            kick_process();
+ 1)   0.355 us    |                          }
+ 1)   0.610 us    |                        }
+ 1)               |                        raw_spin_rq_unlock() {
+ 1)   0.112 us    |                          _raw_spin_unlock();
+ 1)   0.630 us    |                        }
+ 1)               |                        perf_event_task_tick() {
+ 1)   0.118 us    |                          perf_adjust_freq_unthr_context();
+ 1)   0.109 us    |                          __rcu_read_lock();
+ 1)   0.113 us    |                          __rcu_read_unlock();
+ 1)   0.808 us    |                        }
+ 1)               |                        trigger_load_balance() {
+ 1)               |                          raise_softirq() {
+ 1)   0.108 us    |                            __raise_softirq_irqoff();
+ 1)   0.322 us    |                          }
+ 1)               |                          nohz_balancer_kick() {
+ 1)               |                            nohz_balance_exit_idle() {
+ 1)   0.110 us    |                              __rcu_read_lock();
+ 1)   0.110 us    |                              __rcu_read_unlock();
+ 1)   0.550 us    |                            }
+ 1)   0.109 us    |                            __rcu_read_lock();
+ 1)   0.106 us    |                            __rcu_read_unlock();
+ 1)   0.139 us    |                            housekeeping_cpumask();
+ 1)   0.146 us    |                            idle_cpu();
+ 1)               |                            smp_call_function_single_async() {
+ 1)               |                              generic_exec_single() {
+ 1)               |                                __smp_call_single_queue() {
+ 1)   0.143 us    |                                  call_function_single_prep_ipi();
+ 1)               |                                  native_send_call_func_single_ipi() {
+ 1)               |                                    default_send_IPI_single() {
+ 1)               |                                      flat_send_IPI_mask() {
+ 1)               |                                        _flat_send_IPI_mask() {
+ 1) + 44.193 us   |                                          __default_send_IPI_dest_field();
+ 1) + 44.857 us   |                                        }
+ 1) + 45.102 us   |                                      }
+ 1) + 45.336 us   |                                    }
+ 1) + 45.579 us   |                                  }
+ 1) + 46.192 us   |                                }
+ 1) + 46.463 us   |                              }
+ 1) + 46.705 us   |                            }
+ 1) + 48.679 us   |                          }
+ 1) + 49.379 us   |                        }
+ 1) + 57.916 us   |                      }
+ 1)   0.357 us    |                      run_posix_cpu_timers();
+ 1) + 62.859 us   |                    }
+ 1)   0.197 us    |                    profile_tick();
+ 1) + 63.478 us   |                  }
+ 1)   0.115 us    |                  hrtimer_forward();
+ 1) + 64.433 us   |                }
+ 1)   0.120 us    |                _raw_spin_lock_irq();
+ 1)   0.347 us    |                enqueue_hrtimer();
+ 1) + 66.202 us   |              }
+ 1)               |              hrtimer_update_next_event() {
+ 1)   0.116 us    |                __hrtimer_next_event_base();
+ 1)   0.156 us    |                __hrtimer_next_event_base();
+ 1)   0.587 us    |              }
+ 1)   0.125 us    |              _raw_spin_unlock_irqrestore();
+ 1)               |              tick_program_event() {
+ 1)               |                clockevents_program_event() {
+ 1)   0.190 us    |                  ktime_get();
+ 1) + 28.812 us   |                  lapic_next_event();
+ 1) + 29.749 us   |                }
+ 1) + 30.012 us   |              }
+ 1) + 98.798 us   |            }
+ 1) ! 129.592 us  |          }
+ 1)               |          irq_exit_rcu() {
+ 1)               |            __do_softirq() {
+ 1)               |              run_timer_softirq() {
+ 1)   0.124 us    |                _raw_spin_lock_irq();
+ 1)   0.281 us    |                __next_timer_interrupt();
+ 1)   0.112 us    |                _raw_spin_unlock_irq();
+ 1)               |                call_timer_fn() {
+ 1)               |                  srcu_delay_timer() {
+ 1)               |                    queue_work_on() {
+ 1)               |                      __queue_work() {
+ 1)   0.112 us    |                        __rcu_read_lock();
+ 1)   0.134 us    |                        _raw_spin_lock();
+ 1)               |                        wake_up_process() {
+ 1)               |                          try_to_wake_up() {
+ 1)   0.183 us    |                            _raw_spin_lock_irqsave();
+ 1)   0.173 us    |                            kthread_is_per_cpu();
+ 1)               |                            ttwu_queue_wakelist() {
+ 1)   0.156 us    |                              __smp_call_single_queue();
+ 1)   0.887 us    |                            }
+ 1)   0.122 us    |                            _raw_spin_unlock_irqrestore();
+ 1)   2.049 us    |                          }
+ 1)   2.267 us    |                        }
+ 1)   0.112 us    |                        _raw_spin_unlock();
+ 1)   0.109 us    |                        __rcu_read_unlock();
+ 1)   3.754 us    |                      }
+ 1)   4.016 us    |                    }
+ 1)   4.337 us    |                  }
+ 1)   4.642 us    |                }
+ 1)   0.113 us    |                _raw_spin_lock_irq();
+ 1)   0.112 us    |                _raw_spin_unlock_irq();
+ 1)   6.257 us    |              }
+ 1)               |              run_rebalance_domains() {
+ 1)               |                update_blocked_averages() {
+ 1)               |                  raw_spin_rq_lock_nested() {
+ 1)   0.111 us    |                    _raw_spin_lock();
+ 1)   0.324 us    |                  }
+ 1)   0.134 us    |                  update_rq_clock();
+ 1)   0.145 us    |                  update_rt_rq_load_avg();
+ 1)   0.140 us    |                  update_dl_rq_load_avg();
+ 1)               |                  __update_blocked_fair() {
+ 1)   0.171 us    |                    __update_load_avg_cfs_rq();
+ 1)   0.139 us    |                    __update_load_avg_cfs_rq();
+ 1)   0.134 us    |                    __update_load_avg_se();
+ 1)   0.115 us    |                    __update_load_avg_cfs_rq();
+ 1)   0.119 us    |                    __update_load_avg_cfs_rq();
+ 1)   1.738 us    |                  }
+ 1)               |                  raw_spin_rq_unlock() {
+ 1)   0.111 us    |                    _raw_spin_unlock();
+ 1)   0.322 us    |                  }
+ 1)   3.674 us    |                }
+ 1)               |                rebalance_domains() {
+ 1)   0.114 us    |                  __rcu_read_lock();
+ 1)   0.113 us    |                  __msecs_to_jiffies();
+ 1)               |                  load_balance() {
+ 1)   0.124 us    |                    idle_cpu();
+ 1)   0.131 us    |                    group_balance_cpu();
+ 1)               |                    find_busiest_group() {
+ 1)               |                      update_group_capacity() {
+ 1)   0.108 us    |                        __msecs_to_jiffies();
+ 1)   0.332 us    |                      }
+ 1)   0.128 us    |                      cpu_util();
+ 1)   0.114 us    |                      cpu_util();
+ 1)   0.117 us    |                      cpu_util();
+ 1)   0.116 us    |                      cpu_util();
+ 1)   0.138 us    |                      idle_cpu();
+ 1)   0.116 us    |                      update_sd_pick_busiest();
+ 1)   0.115 us    |                      cpu_util();
+ 1)   0.118 us    |                      cpu_util();
+ 1)   0.115 us    |                      idle_cpu();
+ 1)   0.108 us    |                      update_sd_pick_busiest();
+ 1)   0.118 us    |                      cpu_util();
+ 1)   0.115 us    |                      cpu_util();
+ 1)   0.115 us    |                      idle_cpu();
+ 1)   0.115 us    |                      update_sd_pick_busiest();
+ 1)   4.048 us    |                    }
+ 1)   4.940 us    |                  }
+ 1)   0.108 us    |                  __msecs_to_jiffies();
+ 1)   0.120 us    |                  __rcu_read_unlock();
+ 1)   6.151 us    |                }
+ 1) + 10.187 us   |              }
+ 1)               |              rcu_core_si() {
+ 1)               |                rcu_core() {
+ 1)   0.129 us    |                  note_gp_changes();
+ 1)               |                  rcu_accelerate_cbs_unlocked() {
+ 1)   0.132 us    |                    _raw_spin_lock();
+ 1)               |                    rcu_accelerate_cbs() {
+ 1)   0.111 us    |                      rcu_segcblist_pend_cbs();
+ 1)   0.139 us    |                      rcu_segcblist_accelerate();
+ 1)   0.146 us    |                      rcu_start_this_gp();
+ 1)   0.953 us    |                    }
+ 1)   0.116 us    |                    _raw_spin_unlock();
+ 1)               |                    rcu_gp_kthread_wake() {
+ 1)               |                      swake_up_one() {
+ 1)   0.111 us    |                        _raw_spin_lock_irqsave();
+ 1)               |                        wake_up_process() {
+ 1)               |                          try_to_wake_up() {
+ 1)   0.219 us    |                            _raw_spin_lock_irqsave();
+ 1)               |                            select_task_rq_fair() {
+ 1)   0.109 us    |                              __rcu_read_lock();
+ 1)               |                              select_idle_sibling() {
+ 1)   0.120 us    |                                available_idle_cpu();
+ 1)   0.124 us    |                                cpus_share_cache();
+ 1)   0.587 us    |                              }
+ 1)   0.120 us    |                              __rcu_read_unlock();
+ 1)   1.271 us    |                            }
+ 1)   0.182 us    |                            kthread_is_per_cpu();
+ 1)               |                            ttwu_queue_wakelist() {
+ 1)   0.113 us    |                              __smp_call_single_queue();
+ 1)   0.347 us    |                            }
+ 1)   0.113 us    |                            _raw_spin_unlock_irqrestore();
+ 1)   2.857 us    |                          }
+ 1)   3.062 us    |                        }
+ 1)   0.111 us    |                        _raw_spin_unlock_irqrestore();
+ 1)   3.767 us    |                      }
+ 1)   4.044 us    |                    }
+ 1)   5.940 us    |                  }
+ 1)   0.109 us    |                  rcu_nocb_unlock_irqrestore.part.0();
+ 1)   0.114 us    |                  rcu_segcblist_ready_cbs();
+ 1)   6.963 us    |                }
+ 1)   7.189 us    |              }
+ 1) + 24.335 us   |            }
+ 1)   0.120 us    |            idle_cpu();
+ 1) + 24.979 us   |          }
+ 1) # 1984.230 us |        }
+ 1) # 1984.819 us |      }
+ 1)               |      kill_moretime [proc]() {
+ 1)               |        __const_udelay() {
+ 1) # 1986.620 us |          delay_tsc();
+ 1) # 1987.028 us |        }
+ 1) # 1987.393 us |      }
+ 1) # 3972.803 us |    }
+ 1)   1.277 us    |    seq_printf();
+ 1) # 3976.226 us |  }
